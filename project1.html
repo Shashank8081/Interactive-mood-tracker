@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mood Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        main {
+            padding: 50px;
+        }
+        .mood-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .mood-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        #mood-display {
+            margin-top: 30px;
+            font-size: 2rem;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive Mood Tracker</h1>
+        <p>Select your current mood and let us cheer you up!</p>
+    </header>
+    <main>
+        <div id="mood-buttons">
+            <div class="mood-button" data-mood="Happy">😊 Happy</div>
+            <div class="mood-button" data-mood="Sad">😢 Sad</div>
+            <div class="mood-button" data-mood="Excited">🎉 Excited</div>
+            <div class="mood-button" data-mood="Angry">😡 Angry</div>
+        </div>
+        <div id="mood-display"></div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const moodButtons = document.querySelectorAll('.mood-button');
+            const moodDisplay = document.getElementById('mood-display');
+
+            const moodMessages = {
+                Happy: "That's great! Keep smiling 😊",
+                Sad: "It's okay to feel sad. Here's a virtual hug 🤗",
+                Excited: "Yay! Let's celebrate your excitement! 🎉",
+                Angry: "Take a deep breath. You've got this! 💪"
+            };
+
+            moodButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const mood = button.dataset.mood;
+                    moodDisplay.textContent = moodMessages[mood];
+                });
+            });
+        });
+    </script>
+</body>
+</html>
